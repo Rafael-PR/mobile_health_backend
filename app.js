@@ -7,9 +7,11 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const clientRouter = require('./routes/clientRouter');
-const therapistRouter = require('./routes/therapist');
 const categoryRouter = require('./routes/category');
 const bookingRouter = require('./routes/bookingRouter')
+const usersRouter = require('./routes/users');
+const therapistRouter = require('./routes/therapistRouter');
+
 
 const app = express();
 
@@ -24,5 +26,6 @@ app.use('/client', clientRouter);
 app.use('/therapist',therapistRouter);
 app.use('/category',categoryRouter);
 app.use('./booking', bookingRouter)
+
 
 module.exports = app;
