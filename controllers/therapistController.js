@@ -1,4 +1,5 @@
 const Therapist = require('../models/Therapist');
+// const therapistsSeedData = require('../see's/therapists.js)
 // const router = require('../routes');
 
 // ++++++++++  POST a Therapist  +++++++++++++++++++++++++++++++++
@@ -79,4 +80,38 @@ exports.update_therapist= async (req, res)=>{
     }
   }
 
-  
+// +++++++++++++++ Delete one Therapist ++++++++++++++++++++++++
+
+exports.delete_therapist = async (req,res)=>{
+  const { id } = req.params
+  try{ 
+    const deletedTherapist = await Therapist.findByIdAndDelete(id)
+    if(!deletedTherapist) return res.status(404).send('no Therapist with this ID found')
+        res.json(deletedTherapist)
+  }catch (e) {
+    res.status(500).send(e.message)
+  }
+}
+
+// +++++++++++++++++ Delete ALL Therapist  +++++++++++++++++++
+
+exports.delete_all_therapists = async (req, res) => {
+
+  try { 
+    const deletedTherapists = await Therapist.deleteMany()
+    res.json(deletedTherapists)
+  }catch(e) {
+    res.status(500).send(e.message)
+  }
+}
+
+exports.seed = async = (req, res) => {
+
+
+  try {
+
+  } catch (e) {
+    res.status(500).send('Therapists seeding failed')
+  }
+
+}

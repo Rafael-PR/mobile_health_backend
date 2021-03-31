@@ -18,7 +18,15 @@ router.get('/:id',therapistController.find_therapist)
 // UPDATE first_name of Therapist with findOneAndUpdate
 router.put('/',therapistController.update_therapist)
 
+//DELETE one Therapist
+router.delete('/:id',therapistController.delete_therapist)
 
+
+//DELETE all Therapists
+router.delete('/', therapistController.delete_all_therapists)
+
+// CREATE a bunch of therapists
+router.post('/seed', therapistController.seed)
 
 
 
