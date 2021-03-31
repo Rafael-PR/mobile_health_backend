@@ -16,7 +16,7 @@ const clientSchema = new Schema({
     phoneNumber : {type: String},
     shortText: {type: String},
     last_updated: { type: Date, default: Date.now },
-    // booking: {type: Schema.Types.Objectid, ref: 'Booking', required: true}
+    booking: { type: Schema.Types.ObjectId, ref: 'Booking'}
 })
 
 const Client = mongoose.model('Client', clientSchema)

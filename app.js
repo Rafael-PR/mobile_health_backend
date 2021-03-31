@@ -9,6 +9,7 @@ const indexRouter = require('./routes/index');
 const clientRouter = require('./routes/clientRouter');
 const therapistRouter = require('./routes/therapist');
 const categoryRouter = require('./routes/category');
+const bookingRouter = require('./routes/bookingRouter')
 
 const app = express();
 
@@ -22,5 +23,6 @@ app.use('/', indexRouter);
 app.use('/client', clientRouter);
 app.use('/therapist',therapistRouter);
 app.use('/category',categoryRouter);
+app.use('./booking', bookingRouter)
 
 module.exports = app;
