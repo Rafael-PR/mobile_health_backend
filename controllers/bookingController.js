@@ -11,7 +11,7 @@ exports.list_bookings= async (req, res)=>{
 exports.find_booking= async (req, res)=>{
   const { id } = req.params
   try{
-    const targetBooking= await Booking.findById(id)
+    const targetBooking= await Booking.findById(id).populate('clientId').populate('therapistId')
     if (!targetBooking) return res.status(404).send("no such Booking")
     res.json(targetBooking)
   } catch (e) {
