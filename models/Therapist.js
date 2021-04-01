@@ -22,7 +22,9 @@ const therapistSchema = new Schema({
     about: {type: String, min:2, max:350, required:true},
     education: {type: String, min:2, max:350, required:true},
     specialities: {type: String, min:2, max:350, required:true},
-    profilPhoto: {type: String, }
+    profilPhoto: {type: String, },
+    last_updated: { type: Date, default: Date.now },
+    // booking: { type: Schema.Types.ObjectId, ref: 'Booking'}
     
 })
 

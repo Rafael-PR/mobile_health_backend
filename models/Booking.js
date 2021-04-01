@@ -6,7 +6,7 @@ const bookingSchema = new Schema({
     //hier noch object id connecten, ging irgendwie nich 
     clientId: { type: Schema.Types.ObjectId, ref: 'Client'},
     therapistId : {type: Schema.Types.ObjectId, ref: 'Therapist'},
-    time: { type: Date },
+    time: { type: String },
     place : {type: String, enum: ['client loc', 'therapist loc']},
     message: {type: String},
     last_updated: { type: Date, default: Date.now }

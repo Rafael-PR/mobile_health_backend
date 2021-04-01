@@ -4,10 +4,10 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors')
 
 const indexRouter = require('./routes/index');
 const clientRouter = require('./routes/clientRouter');
-const categoryRouter = require('./routes/category');
 const bookingRouter = require('./routes/bookingRouter')
 const usersRouter = require('./routes/users');
 const therapistRouter = require('./routes/therapistRouter');
@@ -15,6 +15,7 @@ const therapistRouter = require('./routes/therapistRouter');
 
 const app = express();
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -24,8 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/client', clientRouter);
 app.use('/therapist',therapistRouter);
-app.use('/category',categoryRouter);
-app.use('./booking', bookingRouter)
+app.use('/booking', bookingRouter)
 
 
 module.exports = app;
