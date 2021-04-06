@@ -1,4 +1,5 @@
 const Therapist = require('../models/Therapist');
+const bcrypt = require('bcrypt');
 // const therapistsSeedData = require('../see's/therapists.js)
 // const router = require('../routes');
 
@@ -13,16 +14,18 @@ exports.create_therapist =async (req, res)=>{
                 streetName,
                 streetNumber,
                 postalCode},
-        emailAddress,
         phoneNumber,
         category,
         about,
         education,
         specialities,
-        profilPhoto} = req.body
+        profilPhoto,
+        emailAddress,
+        password
+      } = req.body
   
     try{
-      const newTherapist= await Therapist.create({
+      const newTherapist= new Therapist({
         first_name,last_name,
         address:{ 
             country,
@@ -30,16 +33,24 @@ exports.create_therapist =async (req, res)=>{
             streetName,
             streetNumber,
             postalCode},
-        emailAddress,
         phoneNumber,
         category,
         about,
         education,
         specialities,
-        profilPhoto
-        
+        profilPhoto,
+        emailAddress,
+        password: await bcrypt.hash(password, 10)
     })
-      res.json(newTherapist)
+      await newTherapist.save()
+
+      res.json({
+        // _id: newTherapist._id,
+        // first_name: newTherapist.first_name,
+        // email: newTherapist.email,
+        // ++ ID UND Email sind schon im Token - nicht nötig nochmal zu senden
+        token: newTherapist.createToken()
+      })
     } catch (e) {
       res.status(500).send(e.message)}
     }

@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+
 
 
 //Von Mogoose wird die Schema class extrahiert
@@ -16,7 +18,6 @@ const therapistSchema = new Schema({
         streetNumber :{type: String},
         postalCode: { type: String},
             },
-    emailAddress: {type: String, min:2, max:50, required:true},
     phoneNumber: {type: String, min:2, max:20, required:true},
     category: {type: String, enum: ['massage', 'physioTherapist','speechTherapist','nutritionTherapist']},
     about: {type: String, min:2, max:350, required:true},
@@ -24,9 +25,18 @@ const therapistSchema = new Schema({
     specialities: {type: String, min:2, max:350, required:true},
     profilPhoto: {type: String, },
     last_updated: { type: Date, default: Date.now },
-    // booking: { type: Schema.Types.ObjectId, ref: 'Booking'}
+    emailAddress: {type: String, min:2, max:50, required:true, unique:true},
+    password: {type: String, required:true}
     
 })
+
+therapistSchema.methods.createToken = function () {
+    //KEINE Arrow Funtion nutzen hier ansonsten funzt .this nicht mehr !!
+     const payload = { _id: this._id, emailAddress: this.emailAddress }
+     const secretKey =process.env.JWT_SECRET;
+     const token = jwt.sign( payload, secretKey )
+     return token
+}
 
 //++++++++  Model   ++++++++++++++++++++++++++++++++++++++++++++++++
 
