@@ -11,6 +11,7 @@ const clientRouter = require('./routes/clientRouter');
 const bookingRouter = require('./routes/bookingRouter')
 const usersRouter = require('./routes/users');
 const therapistRouter = require('./routes/therapistRouter');
+const authentificationRouter = require('./routes/authentificationRouter');
 
 
 const app = express();
@@ -25,7 +26,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/client', clientRouter);
 app.use('/therapist',therapistRouter);
-app.use('/booking', bookingRouter)
+app.use('/booking', bookingRouter);
+app.use('/auth',authentificationRouter);
+
 
 
 module.exports = app;
