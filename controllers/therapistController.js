@@ -44,20 +44,29 @@ exports.create_therapist =async (req, res)=>{
     })
       await newTherapist.save()
 
-      res.json({
+
+      // siehe authenticationController / Token -> Header
+      // res.json({
         // _id: newTherapist._id,
         // first_name: newTherapist.first_name,
         // email: newTherapist.email,
         // ++ ID UND Email sind schon im Token - nicht nötig nochmal zu senden
-        token: newTherapist.createToken()
-      })
+        // token: newTherapist.createToken()
+        // })
+        //-------------------------------------------------------------------
+        const token = newTherapist.createToken()
+        res.set('x-authorization-token',token).send('Therapist created successfully')
+        
+     
     } catch (e) {
       res.status(500).send(e.message)}
     }
 
 // ++++++++++++  GET ALL Therapists  ++++++++++++++++++++++++++++++++++++++++++++
-
+// Szenario wir möchten mit einer Middleware den Bereich "Get All" schützen
+// Kopie wie es vorher aussah drunter auskommentiert
 exports.list_therapists = async (req,res)=>{
+  console.log(req.headers)
     try{
         const allTherapists= await Therapist.find({})
         res.json(allTherapists)
@@ -65,6 +74,15 @@ exports.list_therapists = async (req,res)=>{
         res.status(500).send(e.message)
     }
 }
+
+// exports.list_therapists = async (req,res)=>{
+//   try{
+//       const allTherapists= await Therapist.find({})
+//       res.json(allTherapists)
+//   } catch (e) {
+//       res.status(500).send(e.message)
+//   }
+// }
 
 // +++++++++++++  GET ONE Therapist by ID  ++++++++++++++++++++++++++++++++++++
 
