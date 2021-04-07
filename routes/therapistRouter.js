@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const therapistController = require('../controllers/therapistController');
 
+const authorize = require('../middlewares/authorizeTherapist')
 
 // ++++++++++++  CRUD  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -9,8 +10,9 @@ const therapistController = require('../controllers/therapistController');
 // POST a Therapist
 router.post('/',therapistController.create_therapist)
 
+// ++ Hier wird die authorization middleware hinzugefügt ++++++++++++++++++++
 // Get ALL Therapists
-router.get('/', therapistController.list_therapists)
+router.get('/', authorize,therapistController.list_therapists)
 
 // Find One Therapist BY ID
 router.get('/:id',therapistController.find_therapist)

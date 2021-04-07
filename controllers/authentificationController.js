@@ -14,8 +14,12 @@ const login = async (req,res,next) =>{
     if (!match) return res.status(400).send('Invalid Credentials 2')
 
     const token = therapist.createToken()
-    //Anstatt 'therapist is logged in' senden wir nun einen token
-    res.send(token)
+    // step 1 - Anstatt 'therapist is logged in' senden wir nun einen token
+    // res.send(token)
+    // step 2 - Den Token nicht im Body sondern im Header senden
+    // Header heisst x-authorization-token und angehängt wird der token
+    // Das gleiche auch im TherapistController
+    res.set('x-authorization-token',token).send('Therapist logged in successfully')
 }
 
 module.exports = {
