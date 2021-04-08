@@ -14,7 +14,7 @@ const authorizeTherapist = ( req,res,next )=>{
     jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
         if (err) return res.status(403).send('Access denied2')
         // attach something to the request == giving context
-        req.student = payload;
+        req.therapist = payload;
         next()
     })
     

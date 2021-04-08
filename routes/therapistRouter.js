@@ -12,7 +12,9 @@ router.post('/',therapistController.create_therapist)
 
 // ++ Hier wird die authorization middleware hinzugefügt ++++++++++++++++++++
 // Get ALL Therapists
-router.get('/', authorize,therapistController.list_therapists)
+router.get('/',therapistController.list_therapists)
+//++ mit authorize 
+//router.get('/', authorize,therapistController.list_therapists)
 
 // Find One Therapist BY ID
 router.get('/:id',therapistController.find_therapist)
