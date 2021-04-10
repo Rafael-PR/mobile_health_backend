@@ -2,6 +2,8 @@ const Therapist = require('../models/Therapist');
 // const Client = require('../models/Client');
 const bcrypt = require('bcrypt');
 
+// +++++++++++++++++++++++  LOGIN as Therapist  ++++++++++++++++++++++++++++++++++++++++++++++
+
 const login = async (req,res,next) =>{
     // res.send('Logging in...')
     const { emailAddress, password} = req.body
@@ -21,6 +23,8 @@ const login = async (req,res,next) =>{
     // Das gleiche auch im TherapistController
     res.set('x-authorization-token',token).send('Therapist logged in successfully')
 }
+
+// +++++++++++++++++++++++  LOGIN as Client  ++++++++++++++++++++++++++++++++++++++++++++
 
 module.exports = {
     login

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
 const Schema = mongoose.Schema
 
@@ -12,12 +13,20 @@ const clientSchema = new Schema({
         streetNumber :{type: String},
         postalCode: { type: String}
     },
-    emailAddress: {type: String},
     phoneNumber : {type: String},
     shortText: {type: String},
+    emailAddress: {type: String},
+    password: {type: String, required:true},
     last_updated: { type: Date, default: Date.now },
     booking: { type: Schema.Types.ObjectId, ref: 'Booking'}
 })
+
+clientSchema.methods.createToken = function () {
+    const payload = { _id: this._id, emailAddress: this.emailAddress }
+     const secretKey =process.env.JWT_SECRET;
+     const token = jwt.sign( payload, secretKey )
+     return token
+}
 
 const Client = mongoose.model('Client', clientSchema)
 

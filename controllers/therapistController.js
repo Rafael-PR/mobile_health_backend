@@ -26,7 +26,8 @@ exports.create_therapist =async (req, res)=>{
   
     try{
       const newTherapist= new Therapist({
-        first_name,last_name,
+        first_name,
+        last_name,
         address:{ 
             country,
             city,

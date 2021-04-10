@@ -1,4 +1,5 @@
 const Client = require('../models/Client')
+const bcrypt = require('bcrypt');
 
 exports.list_clients= async (req, res)=>{
     try{
@@ -19,7 +20,19 @@ exports.find_client= async (req, res)=>{
   }
 }
 exports.create_client= async (req, res)=>{
-    const {first_name, last_name, address:{country, city, streetName, streetNumber, postalCode},emailAddress, phoneNumber, shortText } = req.body
+    const {first_name, 
+      last_name, 
+        address:{
+          country, 
+          city, 
+          streetName, 
+          streetNumber, 
+          postalCode},
+          phoneNumber, 
+          shortText,
+          emailAddress,  
+          password
+        } = req.body
 
     // console.log(first_name, last_name)
     // Student.create({first_name, last_name})
@@ -27,8 +40,27 @@ exports.create_client= async (req, res)=>{
     // .catch(err => res.status(500).send(err.message))
   
     try{
-      const newClient= await Client.create({first_name, last_name, address:{country, city, streetName, streetNumber, postalCode},emailAddress, phoneNumber, shortText})
-      res.json(newClient)
+      const newClient= new Client({
+        first_name, 
+        last_name, 
+        address:{
+          country, 
+          city, 
+          streetName, 
+          streetNumber, 
+          postalCode},
+        phoneNumber, 
+        shortText,
+        emailAddress,
+        password: await bcrypt.hash(password,10)
+
+      })
+      await newClient.save()
+
+      const token = newClient.createToken()
+      res.set('x-authorization-token',token).send('Client created successfully')
+
+      // res.json(newClient)
     } catch (e) {
       res.status(500).send(e.message)
     }
