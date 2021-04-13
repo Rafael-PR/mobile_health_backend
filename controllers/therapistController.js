@@ -104,6 +104,17 @@ exports.find_therapist = async (req,res)=>{
     }
 }
 
+// +++++++++++++  GET ME  ++++++++++++++++++++++++++++++++++++
+
+exports.me = async (req, res) => {
+  const { therapist } = req
+  try{
+    res.send(therapist)
+  } catch (e) {
+      res.status(500).send(e.message)
+  }
+}
+
 // ++++++++++++++ UPDATE a Therapists name +++++++++ Wie kann man mehrere Dinge updaten ?
 
 exports.update_therapist= async (req, res)=>{
@@ -139,15 +150,4 @@ exports.delete_all_therapists = async (req, res) => {
   }catch(e) {
     res.status(500).send(e.message)
   }
-}
-
-exports.seed = async = (req, res) => {
-
-
-  try {
-
-  } catch (e) {
-    res.status(500).send('Therapists seeding failed')
-  }
-
 }

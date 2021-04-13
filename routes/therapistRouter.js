@@ -7,6 +7,22 @@ const authorize = require('../middlewares/authorizeTherapist')
 // ++++++++++++  CRUD  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
+
+// router.get('/:id',authorize,therapistController.find_therapist)
+router.get('/me', authorize, therapistController.me)
+
+// UPDATE first_name of Therapist with findOneAndUpdate
+router.put('/',therapistController.update_therapist)
+
+//DELETE one Therapist
+router.delete('/:id',therapistController.delete_therapist)
+
+// Find One Therapist BY ID
+router.get('/:id',therapistController.find_therapist)
+
+//DELETE all Therapists
+router.delete('/', therapistController.delete_all_therapists)
+
 // POST a Therapist
 router.post('/',therapistController.create_therapist)
 
@@ -15,26 +31,6 @@ router.post('/',therapistController.create_therapist)
 router.get('/',therapistController.list_therapists)
 //++ mit authorize 
 //router.get('/', authorize,therapistController.list_therapists)
-
-// Find One Therapist BY ID
-router.get('/:id',therapistController.find_therapist)
-// router.get('/:id',authorize,therapistController.find_therapist)
-// router.get('/me',authorize,therapistController.find_therapist)
-
-// UPDATE first_name of Therapist with findOneAndUpdate
-router.put('/',therapistController.update_therapist)
-
-//DELETE one Therapist
-router.delete('/:id',therapistController.delete_therapist)
-
-
-//DELETE all Therapists
-router.delete('/', therapistController.delete_all_therapists)
-
-// CREATE a bunch of therapists
-router.post('/seed', therapistController.seed)
-
-
 
 
 
