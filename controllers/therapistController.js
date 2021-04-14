@@ -99,7 +99,7 @@ exports.list_therapists = async (req,res)=>{
 exports.find_therapist = async (req,res)=>{
     const { id } = req.params
     try{
-        const targetTherapist = await Therapist.findById(id)
+        const targetTherapist = await (await Therapist.findById(id)).populate('bookings')
         if(!targetTherapist) return res.status(404).send('no Therapist with this ID found')
         res.json(targetTherapist)
     } catch (e) {
@@ -129,6 +129,18 @@ exports.update_therapist= async (req, res)=>{
       res.status(500).send(e.message)
     }
   }
+
+  // +++++++++++++++++ UPDATE a Therapist ProfilPhoto ++++++++++++++++++++++++++++++++++++
+
+  // exports.update_therapist= async (req, res)=>{
+  //   const { old_profilPhoto, new_profilPhoto} =req.body
+  //   try{
+  //     const updatedTherapist= await Therapist.findOneAndUpdate({"profilPhoto": old_profilPhoto}, {"profilPhoto": new_profilPhoto}, {new :true}) 
+  //     res.json(updatedTherapist)
+  //   } catch (e) {
+  //     res.status(500).send(e.message)
+  //   }
+  // }
 
 // +++++++++++++++ Delete one Therapist ++++++++++++++++++++++++
 
