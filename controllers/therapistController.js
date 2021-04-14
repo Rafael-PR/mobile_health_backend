@@ -67,11 +67,14 @@ exports.create_therapist =async (req, res)=>{
 // Szenario wir möchten mit einer Middleware den Bereich "Get All" schützen
 // Kopie wie es vorher aussah drunter auskommentiert
 exports.list_therapists = async (req,res)=>{
-  const { category } = req.query
-  console.log(category)
+  const { category, postalCode } = req.query
+
     try{
       if (category && Array.isArray(category) && category.length) {
-        const filteredTherapists = await Therapist.find({category: { $in: category }})
+        let filteredTherapists;
+        
+        if (!postalCode) filteredTherapists = await Therapist.find({category: { $in: category }})
+        else filteredTherapists = await Therapist.find({ category: { $in: category }, "address.postalCode": postalCode })
         res.json(filteredTherapists)
       } else {
         const allTherapists= await Therapist.find({})
