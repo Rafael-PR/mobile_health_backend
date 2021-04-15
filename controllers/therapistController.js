@@ -1,4 +1,5 @@
 const Therapist = require('../models/Therapist');
+const Booking = require('../models/Booking')
 const bcrypt = require('bcrypt');
 // const therapistsSeedData = require('../see's/therapists.js)
 // const router = require('../routes');

@@ -9,8 +9,38 @@
   <h1>WELCOME </h1>
   <p>to the MOBILE HEALTH BACKEND</p>
 
-  <p>with the auth token from the client you can get all his bookings</p>
+  <h2>Here are the routes</h2>
+
+  <hr>
+
+  <h3>Client routes</h3>
+
+  <p><b>Get All Client & CRUD</b></p>
+  <p>http://localhost:3000/client</p>
+
+  <p><b>When the Client is "logged in" he get with the right token ALL his bookings</b></p>
   <p>http://localhost:3000/client/bookings</p>
+
+  <hr>
+
+  <h3>Therapist routes</h3>
+  
+  <p><b>Get All Therapists & CRUD</b></p>
+  <p>http://localhost:3000/therapist</p>
+
+  <p><b>When the Therapist is "logged in" he get with the right token ALL his bookings</b></p>
+  <p>http://localhost:3000/therapist/bookings</p>
+
+  <p><b>Get All Therapists filtered by category - here by nutrition Therapists and nutrition&category</b></p>
+  <p>http://localhost:3000/therapist?category[]=nutritionTherapist</p>
+  <p>http://localhost:3000/therapist?category[]=nutritionTherapist&category[]=massage</p>
+  
+  <hr>
+
+  <br>
+  <p><b>Login</b></p>
+  <p>http://localhost:3000/auth/login</p>
+
 
 
 </body>
