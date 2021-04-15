@@ -1,5 +1,29 @@
 const Client = require('../models/Client')
+const Booking = require('../models/Booking')
 const bcrypt = require('bcrypt');
+
+
+
+
+exports.get_bookings = async(req,res) =>{
+    const { client } = req
+  try{
+    const clientBookings = await Booking.find({clientId:client._id})
+    res.json(clientBookings)
+  }catch(e) {
+    res.status(500).send(e.message)
+  }
+}
+
+// +++++++++++++  GET ME  ++++++++++++++++++++++++++++++++++++
+exports.me = async (req, res) => {
+  const { client } = req
+  try{
+    res.send(client)
+  } catch (e) {
+      res.status(500).send(e.message)
+  }
+}
 
 exports.list_clients= async (req, res)=>{
     try{

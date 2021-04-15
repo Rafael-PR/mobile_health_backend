@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const therapistController = require('../controllers/therapistController');
+const authorizeTherapist = require('../middlewares/authorizeTherapist')
 
 const authorize = require('../middlewares/authorizeTherapist')
 
 // ++++++++++++  CRUD  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
+// GET ALL Bookings from the Therapist
+router.get('/bookings',authorizeTherapist,therapistController.get_bookings)
 
 // router.get('/:id',authorize,therapistController.find_therapist)
 router.get('/me', authorize, therapistController.me)

@@ -33,20 +33,32 @@ exports.find_booking= async (req, res)=>{
 // }
 
 exports.create_booking= async (req, res)=>{
-    const {clientId,therapistId,time ,place , message} = req.body
+    const {clientId,
+      therapistId,
+      time,
+      place,
+      message,
+      status
+    } = req.body
     
     try{
-      const newBooking= await Booking.create({clientId,therapistId,time ,place , message})
-      const upDatedTherapist = await Therapist.findByIdAndUpdate(therapistId, {
-        $push: {
-          bookings: newBooking._id,
-        },
-      });
+      const newBooking= await Booking.create({
+        clientId,
+        therapistId,
+        time,
+        place, 
+        message,
+        status })
+      // const upDatedTherapist = await Therapist.findByIdAndUpdate(therapistId, {
+      //   $push: {
+      //     bookings: newBooking._id,
+      //   },
+      // });
 
       
       return res.json({
         newBooking,
-        upDatedTherapist,
+        // upDatedTherapist,
       });
     } catch (e) {
       res.status(500).send(e.message)
