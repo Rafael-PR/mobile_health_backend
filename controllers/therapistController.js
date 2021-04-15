@@ -118,6 +118,17 @@ exports.me = async (req, res) => {
   }
 }
 
+// +++++++++++++  GET all the bookings from the Therapist +++++++++++++
+exports.get_bookings = async(req,res) =>{
+  const { therapist } = req
+try{
+  const therapistBookings = await Booking.find({therapistId:therapist._id})
+  res.json(therapistBookings)
+}catch(e) {
+  res.status(500).send(e.message)
+}
+}
+
 // ++++++++++++++ UPDATE a Therapists name +++++++++ Wie kann man mehrere Dinge updaten ?
 
 exports.update_therapist= async (req, res)=>{

@@ -28,8 +28,8 @@ const therapistSchema = new Schema({
     profilPhoto: {type: String, },
     last_updated: { type: Date, default: Date.now },
     emailAddress: {type: String, min:2, max:50, required:true, unique:true},
-    password: {type: String, required:true}
-    
+    password: {type: String, required:true},
+    booking: { type: Schema.Types.ObjectId, ref: 'Booking'}
 })
 
 therapistSchema.methods.createToken = function () {
