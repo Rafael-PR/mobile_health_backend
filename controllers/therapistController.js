@@ -123,7 +123,7 @@ exports.me = async (req, res) => {
 exports.get_bookings = async(req,res) =>{
   const { therapist } = req
 try{
-  const therapistBookings = await Booking.find({therapistId:therapist._id})
+  const therapistBookings = await Booking.find({therapistId:therapist._id}).populate('clientId')
   res.json(therapistBookings)
 }catch(e) {
   res.status(500).send(e.message)
