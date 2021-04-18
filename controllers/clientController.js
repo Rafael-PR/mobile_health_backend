@@ -54,6 +54,7 @@ exports.create_client= async (req, res)=>{
           postalCode},
           phoneNumber, 
           shortText,
+          profilPhoto,
           emailAddress,  
           password
         } = req.body
@@ -75,6 +76,7 @@ exports.create_client= async (req, res)=>{
           postalCode},
         phoneNumber, 
         shortText,
+        profilPhoto,
         emailAddress,
         password: await bcrypt.hash(password,10)
 

@@ -15,6 +15,7 @@ const clientSchema = new Schema({
     },
     phoneNumber : {type: String},
     shortText: {type: String},
+    profilPhoto: {type: String, },
     emailAddress: {type: String},
     password: {type: String, required:true},
     last_updated: { type: Date, default: Date.now },
