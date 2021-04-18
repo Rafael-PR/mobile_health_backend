@@ -7,7 +7,7 @@ const bookingSchema = new Schema({
     clientId: { type: Schema.Types.ObjectId, ref: 'Client',required: true},
     therapistId : {type: Schema.Types.ObjectId, ref: 'Therapist', required: true},
     //change to date anstat string
-    time: { type: Date },
+    time: { type: String },
     place : {type: String, enum: ['client loc', 'therapist loc']},
     message: {type: String},
     status: {type: String, enum: ['pending','accepted','canceled']},
