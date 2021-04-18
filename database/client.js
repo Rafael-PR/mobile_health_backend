@@ -15,7 +15,7 @@ const client = mongoose.connection
 
 
 client.on('error',()=>{
-    console.log(e.message)
+    // console.log(e.message)
 })
 
 module.exports = client
