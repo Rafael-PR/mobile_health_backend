@@ -71,12 +71,24 @@ exports.list_therapists = async (req,res)=>{
   const { category, postalCode } = req.query
 
     try{
-      if (category && Array.isArray(category) && category.length) {
+      if (category && Array.isArray(category) && category.length || postalCode) {
         let filteredTherapists;
-        
-        if (!postalCode) filteredTherapists = await Therapist.find({category: { $in: category }})
-        else filteredTherapists = await Therapist.find({ category: { $in: category }, "address.postalCode": postalCode })
+
+        const filterOptions = {}
+
+        if (category) {
+          filterOptions['category'] = { $in: category }
+        }
+
+        if (postalCode) {
+          filterOptions["address.postalCode"] = postalCode
+        }
+
+        //can add more if statements here to query more
+
+        filteredTherapists = await Therapist.find(filterOptions)
         res.json(filteredTherapists)
+
       } else {
         const allTherapists= await Therapist.find({})
         res.json(allTherapists)
