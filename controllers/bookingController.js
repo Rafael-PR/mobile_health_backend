@@ -1,5 +1,5 @@
 const Booking = require('../models/Booking')
-const Therapist = require('../models/Therapist')
+// const Therapist = require('../models/Therapist')
 
 exports.list_bookings= async (req, res)=>{
     try{
