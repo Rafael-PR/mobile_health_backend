@@ -26,7 +26,7 @@ const bcrypt = require('bcrypt');
 
 // +++++++++++++++++++++++++++  LOGIN as USER  ++++++++++++++++++++++++++++++++++++++++
 
-const login = async (req,res,next) =>{
+const login = async (req,res) =>{
     const { emailAddress, password } = req.body
 
     let user;
