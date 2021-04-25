@@ -20,8 +20,7 @@ const authorizeTherapist = ( req,res,next )=> {
         // attach something to the request == giving context
         // req.therapist = payload;
         console.log({payload})
-        const meTherapist = await Therapist.findById(payload._id)
-        req.therapist = meTherapist
+        req.therapist = await Therapist.findById(payload._id)
         // console.log({payload})
         next()
     })

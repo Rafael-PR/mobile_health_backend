@@ -2,7 +2,6 @@ const express = require('express')
 
 const router = express.Router()
 const clientController = require('../controllers/clientController')
-const client = require('../database/client')
 const authorizeClient = require('../middlewares/authorizeClient')
 
 

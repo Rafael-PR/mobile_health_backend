@@ -25,8 +25,7 @@ const clientSchema = new Schema({
 clientSchema.methods.createToken = function () {
     const payload = { _id: this._id, emailAddress: this.emailAddress, role:'client' }
      const secretKey =process.env.JWT_SECRET;
-     const token = jwt.sign( payload, secretKey )
-     return token
+     return token = jwt.sign( payload, secretKey )
 }
 
 const Client = mongoose.model('Client', clientSchema)
