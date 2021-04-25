@@ -8,7 +8,6 @@ const cors = require('cors')
 
 const clientRouter = require('./routes/clientRouter');
 const bookingRouter = require('./routes/bookingRouter')
-const usersRouter = require('./routes/users');
 const therapistRouter = require('./routes/therapistRouter');
 const authentificationRouter = require('./routes/authentificationRouter');
 
