@@ -36,8 +36,7 @@ therapistSchema.methods.createToken = function () {
     //KEINE Arrow Funtion nutzen hier ansonsten funzt .this nicht mehr !!
      const payload = { _id: this._id, emailAddress: this.emailAddress, role:'therapist' }
      const secretKey =process.env.JWT_SECRET;
-     const token = jwt.sign( payload, secretKey )
-     return token
+     return token = jwt.sign( payload, secretKey )
 }
 
 //++++++++  Model   ++++++++++++++++++++++++++++++++++++++++++++++++
